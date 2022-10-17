@@ -23,16 +23,31 @@
         </nav>
         <!-- -->
         <div class="container">
-            <div class="row">
+            <h4 class="mb-4">Mouse Movement</h4>
+            <div class="row pb-3">
                 <div class="col-md-3">
                     <div id="mouse-area">
 
                     </div>
                 </div>
                 <div class="col-md-9">
-                    <textarea id="output-area"></textarea>
+                    <p>
+                        Move your mouse randomly in the 256 x 256 pixel box on the left to generate random numbers.
+                        <br/>
+                        Every time there is a change in horizontal or vertical direction, the script will 
+                        take the x and y coordinates of the mouse pointer, convert them into binary, and concatenate them.
+                        This process repeats until a total of 2048 bits have been generated.
+                        <br/><br/>
+                        Number of bits generated: <span id="mouse-bits">0</span>
+                    </p>
                 </div>
             </div>
+            <div class="row border-bottom pb-4">
+                <div class="col-md-12">
+                    <textarea id="output-area" readonly></textarea>
+                </div>
+            </div>
+
             
         </div>
 

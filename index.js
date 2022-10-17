@@ -94,7 +94,7 @@ $(document).ready(function () {
         v_direction = cur_v_direction;
 
         // Update length
-        console.log(length);
+        $('#mouse-bits').text(length);
 
         return;
     });
