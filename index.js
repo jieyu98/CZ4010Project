@@ -4,13 +4,18 @@ $(document).ready(function () {
 
     var h_direction = null;
     var v_direction = null;
-    var cur_direction = null;
+    var cur_h_direction = null;
+    var cur_v_direction = null;
     var x = null;
     var y = null;
 
     var v_direction;
 
     $("#mouse-area").mousemove(function (e) {
+        if (length >= 2048) {
+            return;
+        }
+
         var offset = $(this).parent().offset();
         var cur_x = e.pageX - offset.left;
         var cur_y = e.pageY - offset.top;
@@ -25,18 +30,24 @@ $(document).ready(function () {
             x = cur_x;
             y = cur_y;
 
-            console.log("first x"+x);
             return;
         }
 
         // Check if direction is null 
-        if (h_direction == null) {
+        if (h_direction == null && v_direction == null) {
             // Assign direction by comparing cur_x, cur_y with previous x, y
             if (cur_x > x) {
                 h_direction = "right";
             }
             else {
                 h_direction = "left";
+            }
+
+            if (cur_y > y) {
+                v_direction = "down";
+            }
+            else {
+                v_direction = "up";
             }
 
             return;
@@ -46,29 +57,60 @@ $(document).ready(function () {
 
         // Check if moving left or right
         if (cur_x > x) {
-            cur_direction = "right";
-        } 
-        
-        if (cur_x < x) {
-            cur_direction = "left";
+            cur_h_direction = "right";
         }
 
-        // Compare direction with h_direction, only update if different
-        if (h_direction != cur_direction) {
+        if (cur_x < x) {
+            cur_h_direction = "left";
+        }
+
+        // Check if moving up or down
+        if (cur_y > y) {
+            cur_v_direction = "down";
+        }
+
+        if (cur_y < y) {
+            cur_v_direction = "up";
+        }
+
+        //Compare current direction with old direction, only update if different
+        if (h_direction != cur_h_direction || v_direction != cur_v_direction) {
             const output_area = document.getElementById('output-area');
+
+            // Truncate msg if neccessary
+            if (length + msg.length > 2048) {
+                var temp = 2048 - length;
+                msg = truncateString(msg, temp);
+            }
+
             output_area.value += msg;
+            length += msg.length;
         }
 
         // Update x, y, and h_direction
         x = cur_x;
         y = cur_y;
-        h_direction = cur_direction;
+        h_direction = cur_h_direction;
+        v_direction = cur_v_direction;
+
+        // Update length
+        console.log(length);
 
         return;
     });
 
     function dec2bin(dec) {
         return (dec >>> 0).toString(2);
+    }
+
+    function truncateString(str, num) {
+        if (num > str.length) {
+            return str;
+        } else {
+            str = str.substring(0, num);
+            return str;
+        }
+
     }
 
 })
