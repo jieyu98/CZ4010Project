@@ -2,6 +2,7 @@
 from flask import Flask, jsonify
 from threading import Thread
 from flask_restful import Resource, Api
+from flask_cors import CORS
 
 # Weather stuff
 from bs4 import BeautifulSoup
@@ -13,12 +14,14 @@ import random
 
 app = Flask('')
 api = Api(app)
+CORS(app)
 
 #################### Weather ####################
 def csprng_weather():
   URL = 'http://www.weather.gov.sg/weather-rain-area-50km/'
   res = req.get(url=URL)
   if res.status_code == 200:
+    print("Initiated")
     soup = BeautifulSoup(res.text, 'html.parser')
     rain_image_url = soup.find("img", alt="Rain areas over Singapore")
     rain_image_url = rain_image_url.get("src")
@@ -60,9 +63,10 @@ def csprng_weather():
     cloud_str_subset = cloud_str[start:end]
   
   # XOR cloud string subset with psuedo random 2048 bits number
-  res = int(cloud_str_subset) ^ int(p_random)
-  res = bin(res)[2:]
-  
+  res = int(cloud_str_subset,2) ^ int(p_random,2)
+  res = '{0:0{1}b}'.format(res,len(cloud_str_subset))
+
+  print("Completed")
   return res
 
 #################### API ####################
