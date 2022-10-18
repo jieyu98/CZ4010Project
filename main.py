@@ -63,8 +63,8 @@ def csprng_weather():
     cloud_str_subset = cloud_str[start:end]
   
   # XOR cloud string subset with psuedo random 2048 bits number
-  res = int(cloud_str_subset,2) ^ int(p_random,2)
-  res = '{0:0{1}b}'.format(res,len(cloud_str_subset))
+  res = [str(int(cloud_str_subset[i])^int(p_random[i])) for i in range(len(cloud_str_subset))]
+  res = ''.join(res)
 
   print("Completed")
   return res
