@@ -22,7 +22,6 @@ def csprng_weather():
     soup = BeautifulSoup(res.text, 'html.parser')
     rain_image_url = soup.find("img", alt="Rain areas over Singapore")
     rain_image_url = rain_image_url.get("src")
-    print(rain_image_url)
 
     response = req.get(rain_image_url)
     img = Image.open(BytesIO(response.content))
