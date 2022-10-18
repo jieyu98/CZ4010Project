@@ -75,7 +75,7 @@ $(document).ready(function () {
 
         //Compare current direction with old direction, only update if different
         if (h_direction != cur_h_direction || v_direction != cur_v_direction) {
-            const output_area = document.getElementById('output-area');
+            const output_area = document.getElementById('mouse-output');
 
             // Truncate msg if neccessary
             if (length + msg.length > 2048) {
@@ -112,6 +112,19 @@ $(document).ready(function () {
         }
 
     }
+
+    // Call Weather API
+    $('#weather-btn').click(function () {
+        //Send the AJAX call to the server
+        $.ajax({
+            'url': 'https://weather-csprng.jieyu98.repl.co/api/weather',
+            'type': 'GET',
+            'success': function (data) {
+                const output_area = document.getElementById('weather-output');
+                output_area.value = data;
+            }
+        });
+    });
 
 })
 
