@@ -20,7 +20,6 @@ def csprng_weather():
   res = req.get(url=URL)
   if res.status_code == 200:
     soup = BeautifulSoup(res.text, 'html.parser')
-    # print(soup)
     rain_image_url = soup.find("img", alt="Rain areas over Singapore")
     rain_image_url = rain_image_url.get("src")
     print(rain_image_url)
@@ -56,7 +55,6 @@ def csprng_weather():
   end = start + 2048
   
   if end > len(cloud_str)-1:  # If sliding window exceeds pool of bits
-    print("Reverso Magico")
     temp = cloud_str[(start-2048):start]
     cloud_str_subset = temp[::-1]
   else:
@@ -65,21 +63,12 @@ def csprng_weather():
   # XOR cloud string subset with psuedo random 2048 bits number
   res = int(cloud_str_subset) ^ int(p_random)
   res = bin(res)[2:]
-
-  count0 = 0
-  count1 = 0
-  for i in res:
-    if i == "0":
-      count0 += 1
-    else:
-      count1 += 1
   
   return res
 
 #################### API ####################
 class csprng(Resource):
   def get(self):
-    # return "Hi"
     return csprng_weather()
 
 # Creating API endpoint
