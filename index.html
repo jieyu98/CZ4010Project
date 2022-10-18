@@ -18,14 +18,48 @@
 <body>
     <main class="background">
         <!-- As a heading -->
-        <nav class="container navbar navbar-light">
-            <span class="navbar-brand mb-0 h1">CSPRNG</span>
+        <nav class="container navbar navbar-dark">
+            <span class="navbar-brand mb-0 h1">Cryptographic Secure RNG</span>
         </nav>
+        <!-- -->
+        <div class="container">
+            <h4 class="mb-4 mt-4">Mouse Movement</h4>
+            <div class="row pb-3">
+                <div class="col-md-3">
+                    <div id="mouse-area"></div>
+                </div>
+                <div class="col-md-9">
+                    <p>
+                        Move your mouse randomly in the 256 x 256 pixel box on the left to generate random numbers.
+                        <br />
+                        Every time there is a change in horizontal or vertical direction, the script will
+                        take the x and y coordinates of the mouse pointer, convert them into binary, and concatenate
+                        them.
+                        This process repeats until a total of 2048 bits have been generated.
+                        <br /><br />
+                        Number of bits generated: <span id="mouse-bits">0</span>
+                    </p>
+                </div>
+            </div>
+            <div class="row border-bottom pb-4">
+                <div class="col-md-12">
+                    <textarea id="mouse-output" readonly></textarea>
+                </div>
+            </div>
+            <h4 class="mb-4 pt-4">Weather</h4>
+            <div class="row">
+                <div class="col-md-12">
+                    <textarea id="weather-output" readonly></textarea>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" id="weather-btn">Test API</button>
+        </div>
+
     </main>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+        integrity="sha512-3P8rXCuGJdNZOnUx/03c1jOTnMn3rP63nBip5gOP2qmUh5YAdVAvFZ1E+QLZZbC1rtMrQb+mah3AfYW11RUrWA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
