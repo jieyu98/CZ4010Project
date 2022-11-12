@@ -1,19 +1,45 @@
 body {
-    background-color: #0e131c;
+    background-color: #0F1017;
     color: #ffffff;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+h1 {
+    font-weight: 700;
+}
+
+h4 {
+    font-weight: 600;
+}
+
+.container {
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+}
+
+.btn-light { 
+    background-color:#0F1017;
+    border: 1px solid rgba(250, 250, 250, 0.2);
+    color: white;
+}
+
+.btn-light:hover { 
+    background-color:#0F1017;
+    border: 1px solid #BF4E46;
+    color: #BF4E46;
 }
 
 #mouse-area {
     aspect-ratio : 1 / 1;
     width: 256px;
-    background-color: #182231;
+    background-color: #272730;
     border-radius: 10px;
 }
 
 #weather-output, #mouse-output, #shuffle-output {
     width: 100%;
     height: 256px;
-    background-color: #182231;
+    background-color: #272730;
     border-radius: 10px;
     border: none;
     color: #ffffff;

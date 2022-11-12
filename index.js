@@ -131,8 +131,6 @@ $(document).ready(function () {
         });
     });
 
-    
-
     $('#shuffle-btn').click(function () {
         console.log(mouse_bits);
         console.log(padded_cloud_str);
