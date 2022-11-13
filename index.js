@@ -132,24 +132,21 @@ $(document).ready(function () {
     });
 
     $('#shuffle-btn').click(function () {
-        console.log(mouse_bits);
-        console.log(padded_cloud_str);
-        console.log(typeof mouse_bits);
-        console.log(typeof padded_cloud_str);
         //Send the AJAX call to the server
         $.ajax({
-            'url': 'https://weather-csprng.jieyu98.repl.co/api/csprng?mouse_bits='+mouse_bits+'&padded_cloud_str='+padded_cloud_str,
+            'url': 'https://weather-csprng.jieyu98.repl.co/api/csprng',
             'type': 'POST',
+            'data': {
+                'mouse_bits': mouse_bits,
+                'padded_cloud_str': padded_cloud_str
+            },
             'success': function (data) {
-                alert("psl")
                 const output_area = document.getElementById('shuffle-output');
                 output_area.value = data;
+                alert("Done")
             }
         });
     });
-
-
-
 })
 
 
