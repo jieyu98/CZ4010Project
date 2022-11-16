@@ -119,33 +119,83 @@ $(document).ready(function () {
 
     // Call Weather API
     $('#weather-btn').click(function () {
+        $('#spinner-div').show(); //Load button clicked show spinner
+        const output_area = document.getElementById('weather-output');
+        output_area.value = "";
+
         //Send the AJAX call to the server
         $.ajax({
             'url': 'https://weather-csprng.jieyu98.repl.co/api/csprng',
             'type': 'GET',
             'success': function (data) {
-                padded_cloud_str = data[1];
-                const output_area = document.getElementById('weather-output');
-                output_area.value = data[0];
+                padded_cloud_str = data[1]; // Store padded
+                output_area.value = data[0]; // Display unpadded
+            },
+            complete: function () {
+                $('#spinner-div').hide();//Request is complete so hide spinner
             }
         });
     });
 
     $('#shuffle-btn').click(function () {
+        if (document.getElementById("mouse-output").value.length != "2048") {
+            alert("Please finish generating the mouse bits.");
+            return;
+        } else if (document.getElementById("weather-output").value == "") {
+            alert("Please retrieve the weather bits.");
+            return;
+        }
+
+        $('#spinner-div-2').show(); //Load button clicked show spinner
+        const output_area = document.getElementById('shuffle-output');
+        const prime_p_area = document.getElementById('prime-p-output');
+        const prime_q_area = document.getElementById('prime-q-output');
+        output_area.value = "";
+
         //Send the AJAX call to the server
         $.ajax({
             'url': 'https://weather-csprng.jieyu98.repl.co/api/csprng',
             'type': 'POST',
             'data': {
-                'mouse_bits': mouse_bits,
-                'padded_cloud_str': padded_cloud_str
+                'mouse_bits': mouse_bits, // Send mouse bits
+                'padded_cloud_str': padded_cloud_str // Send padded
             },
             'success': function (data) {
-                const output_area = document.getElementById('shuffle-output');
-                output_area.value = data;
-                alert("Done")
+                output_area.value = data[0];
+                prime_p_area.value = data[1];
+                prime_q_area.value = data[2];
+            },
+            complete: function () {
+                $('#spinner-div-2').hide();//Request is complete so hide spinner
             }
         });
+    });
+
+    $('#get-prime-btn').click(function () {
+        const prime_area = document.getElementById('prime-area');
+        if (prime_area.style.display == 'block')
+            prime_area.style.display = 'none';
+        else
+            prime_area.style.display = 'block';
+
+    });
+
+    $('#copy-p-btn').click(function () {        
+        // Get the text field
+        var p_text = document.getElementById("prime-p-output");
+
+        // Select the text field
+        p_text.select();
+        navigator.clipboard.writeText(p_text.value);
+    });
+
+    $('#copy-q-btn').click(function () {        
+        // Get the text field
+        var q_text = document.getElementById("prime-q-output");
+
+        // Select the text field
+        q_text.select();
+        navigator.clipboard.writeText(q_text.value);
     });
 })
 

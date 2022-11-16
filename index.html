@@ -8,14 +8,18 @@
     <title>CZ4010 CSPRNG</title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- Bootstrap icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -50,17 +54,36 @@
             <h4 class="mb-4 mt-4 pt-4 border-top">Weather</h4>
             <div class="row">
                 <div class="col-md-12">
+                    <div id="spinner-div" class="pt-5">
+                        <div class="spinner-border text-light" role="status">
+                        </div>
+                    </div>
                     <textarea id="weather-output" readonly></textarea>
                 </div>
             </div>
-            <button type="button" class="btn btn-light" id="weather-btn">Test API</button>
-            <h4 class="mb-4 mt-4 pt-4 border-top">Shuffle</h4>
+            <button type="button" class="btn btn-light" id="weather-btn">Retrieve</button>
+            <h4 class="mb-4 mt-4 pt-4 border-top">Final Random Bits</h4>
             <div class="row">
                 <div class="col-md-12">
+                    <div id="spinner-div-2" class="pt-5">
+                        <div class="spinner-border text-light" role="status">
+                        </div>
+                    </div>
                     <textarea id="shuffle-output" readonly></textarea>
                 </div>
             </div>
-            <button type="button" class="btn btn-light" id="shuffle-btn">Test API2</button>
+            <button type="button" class="btn btn-light" id="shuffle-btn">Retrieve</button>
+            <button type="button" class="btn btn-light" id="get-prime-btn">Get Primes</button>
+            <div class="row mt-5" id="prime-area">
+                <div class="col-md-12">
+                    <h5>1024-bit Prime P</h5>
+                    <textarea id="prime-p-output" readonly></textarea>
+                    <button type="button" class="btn btn-light" id="copy-p-btn"><i class="bi bi-clipboard text-light"></i> Copy</button>
+                    <h5 class="mt-5">1024-bit Prime Q</h5>
+                    <textarea id="prime-q-output" readonly></textarea>
+                    <button type="button" class="btn btn-light" id="copy-q-btn"><i class="bi bi-clipboard text-light"></i> Copy</button>
+                </div>
+            </div>
         </div>
     </main>
 
