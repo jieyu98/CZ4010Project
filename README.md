@@ -25,7 +25,7 @@ In our web application:
 - There is a 256x256px box
 - Users can move their mouse in the box to generate random bits
 - Every time there is a change in horizontal or vertical direction, the script will take the x and y coordinates of the mouse pointer, convert them to binary, and concatenate them 
-This process repeats until a total of 2048 bits have been generated!
+- This process repeats until a total of 2048 bits have been generated!
 
 
 ## Generating random bits from weather data
